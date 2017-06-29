@@ -15,12 +15,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
     ArrayAdapter aa;
     List<String> items = new ArrayList<>();
     Context mainContext;
+    DB db;
+    ResultSet rs = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,53 +38,28 @@ public class MainActivity extends AppCompatActivity {
         String userName = "pryi1";
         String password = "1p268q";
         mainContext = this;
-        new FetchSQL().execute();
-    }
-    private class FetchSQL extends AsyncTask<Void,Void,String> {
-        @Override
-        protected String doInBackground(Void... params) {
-            String retval = "";
-            try {
-                Class.forName("org.postgresql.Driver");
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-                retval = e.toString();
-            }
-            String url = "jdbc:postgresql://plop.inf.udec.cl/PryI-1?user=pryi1&password=1p268q";
-            Connection conn;
-            try {
-                DriverManager.setLoginTimeout(5);
-                conn = DriverManager.getConnection(url);
-                Statement st = conn.createStatement();
-                String sql;
-                sql = "SELECT * FROM trekkingtracker.ciudades";
-                ResultSet rs = st.executeQuery(sql);
-                while(rs.next()) {
+        db = new DB();
+        try {
+            rs = db.execute("SELECT * FROM trekkingtracker.ciudades").get();
+            if(db.conn != null) {
+                String retval;
+                while (rs.next()) {
                     retval = rs.getString("nombre");
                     items.add(retval);
                 }
-                rs.close();
-                st.close();
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                retval = e.toString();
-            }
-            return retval;
-        }
-        @Override
-        protected void onPostExecute(String value) {
-            Log.i("SQL", value);
-            String[] ciudades = new String[items.size()];
+                String[] ciudades = new String[items.size()];
 
-            for(int i = 0; i < ciudades.length; i++){
-                ciudades[i] = items.get(i);
-            }
+                for (int i = 0; i < ciudades.length; i++) {
+                    ciudades[i] = items.get(i);
+                }
 
-            Spinner ciudadeSpinner = (Spinner) findViewById(R.id.spinnerCiudades);
-            ArrayAdapter aa = new ArrayAdapter(mainContext, android.R.layout.simple_spinner_item,items);
-            aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            ciudadeSpinner.setAdapter(aa);
+                Spinner ciudadeSpinner = (Spinner) findViewById(R.id.spinnerCiudades);
+                ArrayAdapter aa = new ArrayAdapter(mainContext, android.R.layout.simple_spinner_item, items);
+                aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                ciudadeSpinner.setAdapter(aa);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
