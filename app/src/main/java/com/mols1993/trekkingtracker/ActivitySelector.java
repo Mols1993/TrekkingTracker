@@ -3,6 +3,7 @@ package com.mols1993.trekkingtracker;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -23,18 +24,10 @@ public class ActivitySelector extends AppCompatActivity {
         nombreCiudad = (TextView) findViewById(R.id.nombreCiudad);
         nombreCiudad.setText(ciudad);
 
-        trekking = (ImageButton) findViewById(R.id.trekkingButton);
-        food = (ImageButton) findViewById(R.id.foodButton);
-        rafting = (ImageButton) findViewById(R.id.raftingButton);
-        kultrun = (ImageButton) findViewById(R.id.kultrunButton);
-
-        trekking.setOnClickListener(new trekkingListener());
-        food.setOnClickListener(new foodListener());
-        rafting.setOnClickListener(new raftingListener());
-        kultrun.setOnClickListener(new kultrunListener());
     }
 
     public void cualquiera(View v){
+        Log.v("cualquier cosa"," entré a cualquiera");
         ImageButton c = (ImageButton) v;
         Intent intent = new Intent(this, SubActivity_Selector.class);
         intent.putExtra("ciudad", ciudad);
@@ -42,48 +35,5 @@ public class ActivitySelector extends AppCompatActivity {
         startActivity(intent);
     }
 
-    class trekkingListener implements View.OnClickListener{
-        @Override
-        public void onClick(View view) {
-            /*Intent intent = new Intent(this, SubActivity_Selector.class);
-            intent.putExtra("ciudad", ciudad);
-            intent.putExtra("actividad","trekking");
-            startActivity(intent);*/
-        }
 
-    }
-
-    class foodListener implements View.OnClickListener{
-        @Override
-        public void onClick(View view) {
-            /*Intent intent = new Intent(this, SubActivity_Selector.class);
-            intent.putExtra("ciudad", ciudad);
-            intent.putExtra("actividad","trekking");
-            startActivity(intent);*/
-        }
-
-    }
-
-    class raftingListener implements View.OnClickListener{
-        @Override
-        public void onClick(View view) {
-            /*Intent intent = new Intent(this, SubActivity_Selector.class);
-            intent.putExtra("ciudad", ciudad);
-            intent.putExtra("actividad","trekking");
-            startActivity(intent);*/
-        }
-
-    }
-    class kultrunListener implements View.OnClickListener{
-        @Override
-        public void onClick(View view) {
-            /*Intent intent = new Intent(this, SubActivity_Selector.class);
-            intent.putExtra("ciudad", ciudad);
-            intent.putExtra("actividad","trekking");
-            startActivity(intent);*/
-        }
-
-    }
-
-    //startActivity(new Intent(this, Actividad2.class)); pasar a otra actividad;
 }
