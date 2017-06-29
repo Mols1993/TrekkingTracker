@@ -3,7 +3,6 @@ package com.mols1993.trekkingtracker;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -24,16 +23,17 @@ public class ActivitySelector extends AppCompatActivity {
         nombreCiudad = (TextView) findViewById(R.id.nombreCiudad);
         nombreCiudad.setText(ciudad);
 
+        trekking = (ImageButton) findViewById(R.id.trekkingButton);
+        food = (ImageButton) findViewById(R.id.foodButton);
+        rafting = (ImageButton) findViewById(R.id.raftingButton);
+        kultrun = (ImageButton) findViewById(R.id.kultrunButton);
     }
 
     public void cualquiera(View v){
-        Log.v("cualquier cosa"," entré a cualquiera");
         ImageButton c = (ImageButton) v;
         Intent intent = new Intent(this, SubActivity_Selector.class);
         intent.putExtra("ciudad", ciudad);
         intent.putExtra("actividad",c.getContentDescription());
         startActivity(intent);
     }
-
-
 }
