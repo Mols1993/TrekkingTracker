@@ -31,7 +31,7 @@ public class ActivitySelector extends AppCompatActivity {
 
     public void cualquiera(View v){
         ImageButton c = (ImageButton) v;
-        Intent intent = new Intent(this, SubActivity_Selector.class);
+        Intent intent = new Intent(this, SubActivitySelector.class);
         intent.putExtra("ciudad", ciudad);
         intent.putExtra("actividad",c.getContentDescription());
         startActivity(intent);

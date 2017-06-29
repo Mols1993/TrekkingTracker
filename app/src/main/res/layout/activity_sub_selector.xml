@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mols1993.trekkingtracker.SubActivity_Selector">
+    tools:context="com.mols1993.trekkingtracker.SubActivitySelector">
 
     <LinearLayout
         android:layout_width="369dp"
