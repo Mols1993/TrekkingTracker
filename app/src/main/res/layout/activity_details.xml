@@ -38,20 +38,23 @@
                     android:id="@+id/nombreLugar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="asdasd" />
+                    android:text="asdasd"
+                    android:textAppearance="@style/TextAppearance.AppCompat" />
 
                 <TextView
                     android:id="@+id/infoLugar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="asdasdasd" />
+                    android:text="asdasdasd"
+                    android:textAppearance="@style/TextAppearance.AppCompat" />
 
                 <TextView
                     android:id="@+id/dificultadLugar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="asdasdasd" />
+                    android:text="asdasdasd"
+                    android:textAppearance="@style/TextAppearance.AppCompat" />
             </LinearLayout>
 
             <ImageView
@@ -64,6 +67,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btnLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

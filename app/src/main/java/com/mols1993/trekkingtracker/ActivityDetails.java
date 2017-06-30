@@ -35,6 +35,52 @@ public class ActivityDetails extends AppCompatActivity {
         if(actividad.equals("trekking")){
             trekking();
         }
+        else if(actividad.equals("food")){
+            food();
+        }
+    }
+
+    public void food(){
+
+        nombreCiudad = (TextView) findViewById(R.id.nombreCiudad);
+        nombreLugar = (TextView) findViewById(R.id.nombreLugar);
+        infoLugar = (TextView) findViewById(R.id.infoLugar);
+        dificultadLugar = (TextView) findViewById(R.id.dificultadLugar);
+        imgDestino = (ImageView) findViewById(R.id.imgDestino);
+        descLayout = (LinearLayout) findViewById(R.id.descLayout);
+        LinearLayout btnLayout = (LinearLayout) findViewById(R.id.btnLayout);
+        btnLayout.removeAllViews();
+
+        DB db = new DB();
+        try {
+            String query = "Select * FROM trekkingtracker.food WHERE id="+ id;
+            Log.i("Tipo", query);
+            rs = db.execute(query).get();
+            rs.next();
+            String urlFoto = null;
+            String urlMapa = null;
+            urlFoto = rs.getString("foto");
+            urlMapa = rs.getString("mapa");
+            UrlImg urlImg = new UrlImg();
+            UrlImg urlImgMapa = new UrlImg();
+            Bitmap bmp = urlImg.execute(urlFoto).get();
+            mapa = urlImgMapa.execute(urlMapa).get();
+            imgDestino.setImageBitmap(bmp);
+            nombreCiudad.setText(rs.getString("ciudad"));
+            nombreLugar.setText(rs.getString("nombre"));
+            infoLugar.setText("Información: " + rs.getString("descripcion") + "\nDirección: " + rs.getString("direccion"));
+            dificultadLugar.setText("Horario: " + rs.getString("horario"));
+            ImageView img = new ImageView(this);
+            img.setImageBitmap(mapa);
+            img.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            img.setAdjustViewBounds(true);
+            img.setMinimumWidth(descLayout.getWidth());
+            descLayout.removeAllViews();
+            descLayout.addView(img);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.i("Tipo", e.toString());
+        }
     }
 
     public void trekking(){
