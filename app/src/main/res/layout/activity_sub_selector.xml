@@ -18,7 +18,7 @@
         app:layout_constraintRight_toRightOf="parent">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/txtCiudad"
             android:layout_width="188dp"
             android:layout_height="match_parent"
             android:layout_weight="0.46"

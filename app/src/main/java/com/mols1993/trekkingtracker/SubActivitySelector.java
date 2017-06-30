@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class SubActivitySelector extends AppCompatActivity {
     ResultSet rs = null;
     List<String> actList = new ArrayList<>();
     List<String> descList = new ArrayList<>();
+    List<String> idList = new ArrayList<>();
     LinearLayout scroll;
 
     @Override
@@ -33,6 +35,9 @@ public class SubActivitySelector extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         ciudad = extras.getString("ciudad");
         activ = extras.getString("actividad");
+
+        TextView txtCiudad = (TextView) findViewById(R.id.txtCiudad);
+        txtCiudad.setText(ciudad);
 
         db = new DB();
 
@@ -49,6 +54,8 @@ public class SubActivitySelector extends AppCompatActivity {
                     actList.add(retval);
                     retval = rs.getString("descripcion");
                     descList.add(retval);
+                    retval = rs.getString("id");
+                    idList.add(retval);
                 }
                 String[] nombre = new String[actList.size()];
                 String[] desc = new String[descList.size()];
@@ -60,7 +67,7 @@ public class SubActivitySelector extends AppCompatActivity {
                     Button btnTag = new Button(this);
                     btnTag.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
                     btnTag.setText(nombre[i] + "\n" + desc[i]);
-                    btnTag.setId(i);
+                    btnTag.setId(Integer.parseInt(idList.get(i)));
                     btnTag.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -79,10 +86,9 @@ public class SubActivitySelector extends AppCompatActivity {
     }
 
     public void cualquiera(View v){
-
-        Button c = (Button) v;
         Intent intent = new Intent(this, ActivityDetails.class);
-        intent.putExtra("idsub",c.getId());
+        String id = String.valueOf(v.getId());
+        intent.putExtra("idsub",id);
         intent.putExtra("tipoact",activ);
         startActivity(intent);
     }
