@@ -1,12 +1,14 @@
 package com.mols1993.trekkingtracker;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.LinearLayout.LayoutParams;
@@ -24,6 +26,7 @@ public class SubActivitySelector extends AppCompatActivity {
     List<String> descList = new ArrayList<>();
     List<String> idList = new ArrayList<>();
     LinearLayout scroll;
+    ImageView mini;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +34,13 @@ public class SubActivitySelector extends AppCompatActivity {
         setContentView(R.layout.activity_sub_selector);
 
         scroll = (LinearLayout) findViewById(R.id.scrollLayout);
+        mini = (ImageView) findViewById(R.id.imageView3);
 
         Bundle extras = getIntent().getExtras();
         ciudad = extras.getString("ciudad");
         activ = extras.getString("actividad");
+
+        imageSelect();
 
         TextView txtCiudad = (TextView) findViewById(R.id.txtCiudad);
         txtCiudad.setText(ciudad);
@@ -98,5 +104,22 @@ public class SubActivitySelector extends AppCompatActivity {
         q = "SELECT * from trekkingtracker."+ activ +" WHERE ciudad= '" + ciudad + "'";
         Log.v("query", q);
         return q;
+    }
+
+    protected  void imageSelect(){
+
+        if(activ.equals("trekking")){
+            Drawable myDrawable = getResources().getDrawable(R.drawable.trekking);
+            mini.setImageDrawable(myDrawable);
+        }else if(activ.equals("food")){
+            Drawable myDrawable = getResources().getDrawable(R.drawable.food);
+            mini.setImageDrawable(myDrawable);
+        }else if(activ.equals("rafting")){
+            Drawable myDrawable = getResources().getDrawable(R.drawable.rafting);
+            mini.setImageDrawable(myDrawable);
+        }else if(activ.equals("kultrun")){
+            Drawable myDrawable = getResources().getDrawable(R.drawable.kultrun);
+            mini.setImageDrawable(myDrawable);
+        }
     }
 }
