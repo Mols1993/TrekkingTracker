@@ -20,6 +20,8 @@ import java.sql.Statement;
 public class DB extends AsyncTask<String,Void,ResultSet> {
     Connection conn;
 
+    //Esta clase se conecta a la base de datos y ejecuta la query que uno le entregue en una hebra secundaria.
+
     public DB(){
 
     }

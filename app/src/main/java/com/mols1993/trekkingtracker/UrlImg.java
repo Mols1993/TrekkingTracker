@@ -14,7 +14,7 @@ import java.io.InputStream;
 
 public class UrlImg extends AsyncTask<String, Void, Bitmap>{
 
-    ImageView bmImage;
+    //Esta clase recibe una url de una imagen y devuelve un bitmap que la contiene, esto se ejecuta en una hebra secundaria.
 
     public UrlImg(){
 

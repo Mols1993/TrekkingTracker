@@ -52,6 +52,7 @@ public class SubActivitySelector extends AppCompatActivity {
         auxLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
         try {
+            //Obtenemos la lista de sub-actividades que tiene la actividad seleccionada por el usuario.
             rs = db.execute(generaQuery()).get();
             if(db.conn != null) {
                 String retval;
@@ -67,6 +68,7 @@ public class SubActivitySelector extends AppCompatActivity {
                 String[] desc = new String[descList.size()];
 
                 Log.v("Largo nombre", new Integer(nombre.length).toString());
+                //Creamos u botón por cada sub-actividad
                 for (int i = 0; i < nombre.length; i++) {
                     nombre[i] = actList.get(i);
                     desc[i] = descList.get(i);
@@ -107,7 +109,7 @@ public class SubActivitySelector extends AppCompatActivity {
     }
 
     protected  void imageSelect(){
-
+        //Elige la imagen correcta para mostrar en la esquina superior derecha.
         if(activ.equals("trekking")){
             Drawable myDrawable = getResources().getDrawable(R.drawable.trekking);
             mini.setImageDrawable(myDrawable);

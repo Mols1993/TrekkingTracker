@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         db = new DB();
         try {
+            //Obtenemos la lista de ciudades disponibles para la app.
             rs = db.execute("SELECT * FROM trekkingtracker.ciudades").get();
             if(db.conn != null) {
                 String retval;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     ciudades[i] = items.get(i);
                 }
 
+                //Llenamos el spinner con las ciudades.
                 Spinner ciudadeSpinner = (Spinner) findViewById(R.id.spinnerCiudades);
                 ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, items);
                 aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

@@ -32,6 +32,8 @@ public class ActivityDetails extends AppCompatActivity {
         id = extras.getString("idsub");
         actividad = extras.getString("tipoact");
 
+        //Dependiendo del tipo de actividad que se seleccione, el layout se llena de cosas diferentes.
+
         if(actividad.equals("trekking")){
             trekking();
         }
@@ -116,6 +118,7 @@ public class ActivityDetails extends AppCompatActivity {
         }
     }
 
+    //Las siguientes 4 funciones manejan el comportamiento de los botones, estos muetran diferente información en un ScrollView.
     public void clickFlora(View v){
         TextView txt = new TextView(this);
         try {
