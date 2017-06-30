@@ -23,11 +23,10 @@ public class ActivitySelector extends AppCompatActivity {
 
         nombreCiudad = (TextView) findViewById(R.id.nombreCiudad);
         nombreCiudad.setText(ciudad);
-
     }
 
     public void cualquiera(View v){
-        Log.v("cualquier cosa"," entré a cualquiera");
+
         ImageButton c = (ImageButton) v;
         Intent intent = new Intent(this, SubActivity_Selector.class);
         intent.putExtra("ciudad", ciudad);
