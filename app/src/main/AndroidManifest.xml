@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ActivitySelector" />
-        <activity android:name=".SubActivity_Selector"></activity>
+        <activity android:name=".SubActivity_Selector" />
+        <activity android:name=".ActivityDetails"></activity>
     </application>
 
 </manifest>
