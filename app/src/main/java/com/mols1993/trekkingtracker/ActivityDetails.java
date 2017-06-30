@@ -103,7 +103,9 @@ public class ActivityDetails extends AppCompatActivity {
     public void clickMapa(View v){
         ImageView img = new ImageView(this);
         img.setImageBitmap(mapa);
-        img.setScaleType(ImageView.ScaleType.FIT_START);
+        img.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        img.setAdjustViewBounds(true);
+        img.setMinimumWidth(descLayout.getWidth());
         descLayout.removeAllViews();
         descLayout.addView(img);
     }
